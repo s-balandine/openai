@@ -26,6 +26,7 @@
 create_moderation <- function(
         input,
         model,
+        openai_api_url = Sys.getenv("OPENAI_API_URL"),
         openai_api_key = Sys.getenv("OPENAI_API_KEY"),
         openai_organization = NULL
 ) {
@@ -60,7 +61,7 @@ create_moderation <- function(
 
     task <- "moderations"
 
-    base_url <- glue::glue("https://api.openai.com/v1/{task}")
+    base_url <- glue::glue("{openai_api_url}/v1/{task}")
 
     headers <- c(
         "Authorization" = paste("Bearer", openai_api_key),

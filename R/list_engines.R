@@ -30,6 +30,7 @@
 #' @keywords internal
 #' @export
 list_engines <- function(
+        openai_api_url = Sys.getenv("OPENAI_API_URL"),
         openai_api_key = Sys.getenv("OPENAI_API_KEY"),
         openai_organization = NULL
 ) {
@@ -62,7 +63,7 @@ list_engines <- function(
     #---------------------------------------------------------------------------
     # Build parameters of the request
 
-    base_url <- "https://api.openai.com/v1/engines"
+    base_url <- glue::glue("{openai_api_url}/v1/engines")
 
     headers <- c(
         "Authorization" = paste("Bearer", openai_api_key),

@@ -35,6 +35,7 @@ create_translation <- function(
         prompt = NULL,
         response_format = "json", # json, text, srt, verbose_json, or vtt
         temperature = 0,
+        openai_api_url = Sys.getenv("OPENAI_API_URL"),
         openai_api_key = Sys.getenv("OPENAI_API_KEY"),
         openai_organization = NULL
 ) {
@@ -95,7 +96,7 @@ create_translation <- function(
 
     task <- "audio/translations"
 
-    base_url <- glue::glue("https://api.openai.com/v1/{task}")
+    base_url <- glue::glue("{openai_api_url}/v1/{task}")
 
     headers <- c(
         "Authorization" = paste("Bearer", openai_api_key),
